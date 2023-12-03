@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import random
 
 df = pd.read_excel('./referentiel.xlsx')
 
@@ -28,7 +29,7 @@ def display_modules_main_panel(parcours):
             for module in parcours_semestre.Module:
                 st.button(
                     label=module,
-                    key=module+semestre+parcours+parcours_semestre,
+                    key=str(random.randrange(10**6)),
                     on_click=display_module_infos,
                     args=(parcours, semestre, module)
                 )
