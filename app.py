@@ -26,10 +26,9 @@ def display_modules_main_panel(parcours):
         with st.expander(semestre):
             parcours_semestre = data.query('Semestre == @semestre')
             for module in parcours_semestre.Module:
-                label = ' '.join(module.split(':')[1:])
                 st.button(
-                    label=label,
-                    key=semestre + label,
+                    label=module,
+                    key=module+semestre+parcours+parcours_semestre,
                     on_click=display_module_infos,
                     args=(parcours, semestre, module)
                 )
