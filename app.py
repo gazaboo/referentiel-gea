@@ -4,8 +4,17 @@ import numpy as np
 import random
 from streamlit_gsheets import GSheetsConnection
 
-conn = st.connection("gsheets", type=GSheetsConnection)
-df = conn.read()
+
+@st.cache_data
+def load_data():
+    conn = st.connection("gsheets", type=GSheetsConnection)
+    df = conn.read(
+        ttl="60min"
+    )
+    return df
+
+
+df = load_data()
 
 
 def display_module_infos(parcours, semestre, module):
@@ -42,3 +51,6 @@ for parcours in df.Parcours.unique():
     if st.sidebar.button(parcours, type="primary"):
         data = df.query('Parcours == @parcours')
         display_modules_main_panel(parcours)
+
+if st.sidebar.button('synchroniser', type="secondary"):
+    st.cache_data.clear()

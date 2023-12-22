@@ -1,5 +1,5 @@
+streamlit==1.29
 pandas
 numpy
 openpyxl
-streamlit
 st-gsheets-connection
