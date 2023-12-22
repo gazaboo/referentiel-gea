@@ -5,3 +5,4 @@
 *.pdf
 *.tsv
 objectifs_peda.xlsx
+.streamlit/secrets.toml

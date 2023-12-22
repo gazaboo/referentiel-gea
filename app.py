@@ -2,8 +2,10 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import random
+from streamlit_gsheets import GSheetsConnection
 
-df = pd.read_excel('./referentiel.xlsx')
+conn = st.connection("gsheets", type=GSheetsConnection)
+df = conn.read()
 
 
 def display_module_infos(parcours, semestre, module):
